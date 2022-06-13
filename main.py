@@ -1,4 +1,4 @@
-from classes import ReadfilExport, Preprocess, TrainDataClass
+from classes import ReadfilExport, Preprocess, TrainDataClass, Visualize
 from sklearn.preprocessing import MinMaxScaler
 
 class Init:
@@ -6,12 +6,15 @@ class Init:
 
         readfile = ReadfilExport()
         
-        url = '/Users/mcdons/Downloads/heart.csv'
+        url = 'heart.csv'
         tesdf=readfile.readFile(url)
 
         tesdf
 
+        visualize = Visualize(tesdf)
+        visualize.visualize()
         preprocess = Preprocess(tesdf)
+
         onehotEcode = preprocess.onehot_encode()
         # onehotEcode
 
@@ -22,7 +25,10 @@ class Init:
 
         svmAccuracy = train.modelSVC(X_train, y_train, X_test, y_test)
 
+        print("Accuracy for SVM is:")
         print(svmAccuracy)
+
 
         
 Init()
+
